@@ -4,9 +4,8 @@
   --text: #172033;
   --muted: #5f6b7a;
   --line: #dbe3ee;
-  --accent: #2563eb;
-  --accent-dark: #1d4ed8;
-  --accent-soft: #eff6ff;
+  --accent: #0f766e;
+  --accent-dark: #115e59;
   --heading: #0f172a;
   --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
   --radius: 18px;
@@ -466,7 +465,7 @@ h1 {
     --text: #111827;
     --muted: #4b5563;
     --line: #d1d5db;
-    --accent: #1d4ed8;
+    --accent: #0f766e;
     --heading: #111827;
   }
 
