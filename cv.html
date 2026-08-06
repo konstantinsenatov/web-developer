@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Konstantin Senatov — Web Solutions Engineer specialising in WordPress development, technical SEO, web performance, website infrastructure, and troubleshooting.">
+  <meta name="description" content="Konstantin Senatov — Web Solutions Engineer specialising in WordPress development, technical SEO, web performance, infrastructure, and website troubleshooting.">
   <meta name="robots" content="index, follow">
 
   <title>Konstantin Senatov — Web Solutions Engineer</title>
@@ -35,16 +35,21 @@
 
   <style>
     :root {
-      --page-bg: #eef2f7;
+      --page: #edf3f2;
       --surface: #ffffff;
-      --text: #172033;
-      --muted: #5f6b7a;
-      --line: #dbe3ee;
+      --surface-soft: #f6fbfa;
+      --text: #172321;
+      --heading: #0f1f1d;
+      --muted: #61706d;
+      --line: #d7e3e0;
       --accent: #0f766e;
-      --accent-dark: #115e59;
-      --heading: #0f172a;
-      --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
-      --radius: 18px;
+      --accent-dark: #0b5f59;
+      --accent-soft: #dff3f0;
+      --accent-faint: #f0faf8;
+      --shadow: 0 26px 80px rgba(20, 58, 53, 0.14);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 13px;
     }
 
     * {
@@ -57,14 +62,26 @@
 
     body {
       margin: 0;
-      padding: 48px 20px;
-      background: var(--page-bg);
+      padding: 44px 20px;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 32%),
+        linear-gradient(180deg, #f4f8f7 0%, var(--page) 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 15px;
-      line-height: 1.62;
+      line-height: 1.58;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: var(--accent);
     }
 
     button,
@@ -72,42 +89,68 @@
       font: inherit;
     }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover,
-    a:focus-visible {
-      text-decoration: underline;
+    svg {
+      display: block;
     }
 
     .resume {
-      width: min(100%, 1040px);
+      width: min(100%, 1120px);
       margin: 0 auto;
-      padding: 56px 64px 36px;
+      overflow: hidden;
       background: var(--surface);
-      border: 1px solid rgba(219, 227, 238, 0.9);
-      border-radius: var(--radius);
+      border: 1px solid rgba(201, 220, 216, 0.9);
+      border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
     }
 
-    .resume-header {
+    .hero {
+      position: relative;
+      padding: 52px 58px 42px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.12), rgba(255, 255, 255, 0.94) 52%),
+        var(--surface-soft);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::after {
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 330px;
+      height: 330px;
+      border: 54px solid rgba(15, 118, 110, 0.055);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(250px, 0.42fr);
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
       gap: 44px;
       align-items: end;
-      padding-bottom: 36px;
-      border-bottom: 2px solid var(--heading);
     }
 
     .eyebrow {
-      margin: 0 0 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 14px;
       color: var(--accent);
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
+      font-weight: 800;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      content: "";
     }
 
     h1,
@@ -118,93 +161,158 @@
     }
 
     h1 {
+      max-width: 730px;
       margin-bottom: 8px;
       color: var(--heading);
-      font-size: clamp(36px, 6vw, 58px);
-      line-height: 1.02;
-      letter-spacing: -0.045em;
+      font-size: clamp(42px, 6vw, 66px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
     }
 
     .role {
-      margin-bottom: 8px;
-      color: var(--accent);
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      margin-bottom: 15px;
+      color: var(--accent-dark);
+      font-size: clamp(22px, 2.8vw, 30px);
+      font-weight: 750;
+      letter-spacing: -0.025em;
     }
 
-    .specialisation {
-      max-width: 680px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .specialisation span {
-      padding: 0 4px;
-      color: #9aa5b4;
-    }
-
-    .contact-list {
+    .focus-line {
       display: flex;
-      flex-direction: column;
-      gap: 9px;
+      flex-wrap: wrap;
+      gap: 8px;
       margin: 0;
-      color: var(--muted);
-      font-size: 13px;
+    }
+
+    .focus-line span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 6px 11px;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: #35504c;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .contact-panel {
+      display: grid;
+      gap: 10px;
+      margin: 0;
       font-style: normal;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 11px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid rgba(203, 220, 217, 0.9);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #33423f;
+      font-size: 13px;
+      font-weight: 650;
       overflow-wrap: anywhere;
     }
 
-    .contact-list a {
-      width: fit-content;
-      font-weight: 600;
+    .contact-icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .contact-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .content {
+      padding: 42px 58px 34px;
     }
 
     .section {
-      padding-top: 36px;
+      padding-top: 34px;
     }
 
-    .section + .section {
-      margin-top: 8px;
+    .section:first-child {
+      padding-top: 0;
     }
 
-    .section > h2,
-    .section-split h2 {
-      position: relative;
-      margin-bottom: 22px;
-      padding-bottom: 11px;
+    .section-heading {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
       color: var(--heading);
-      font-size: 18px;
-      line-height: 1.3;
-      letter-spacing: 0.06em;
+      font-size: 17px;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .section > h2::after,
-    .section-split h2::after {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 54px;
-      height: 3px;
-      border-radius: 999px;
-      background: var(--accent);
+    .section-heading::after {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, var(--line), transparent);
       content: "";
     }
 
-    .summary {
-      max-width: 920px;
+    .section-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
     }
 
-    .summary p {
-      margin-bottom: 12px;
-      color: #344054;
+    .section-mark svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .summary p:last-child {
+    .summary-box {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      padding: 24px 26px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--accent-faint), #ffffff 68%);
+    }
+
+    .summary-box p {
       margin-bottom: 0;
+      color: #3f514d;
+    }
+
+    .summary-box strong {
+      color: var(--heading);
     }
 
     .expertise-grid {
@@ -214,68 +322,124 @@
     }
 
     .expertise-card {
-      padding: 20px 22px;
+      position: relative;
+      padding: 22px 22px 20px;
+      overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fbfdff;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
       break-inside: avoid;
+    }
+
+    .expertise-card::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), rgba(15, 118, 110, 0.16));
+      content: "";
     }
 
     .expertise-card-wide {
       grid-column: 1 / -1;
     }
 
-    .expertise-card h3 {
-      margin-bottom: 10px;
+    .card-title {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .card-title h3 {
+      margin: 0;
       color: var(--heading);
       font-size: 15px;
     }
 
-    .expertise-card ul,
-    .achievement-list {
+    .card-icon {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+    }
+
+    .card-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
       margin: 0;
-      padding-left: 19px;
+      padding: 0;
+      list-style: none;
     }
 
-    .expertise-card li {
-      margin-bottom: 5px;
-      color: var(--muted);
-      font-size: 13px;
+    .skill-tags li {
+      padding: 6px 9px;
+      border: 1px solid #d9e6e3;
+      border-radius: 8px;
+      background: #f8fbfa;
+      color: #52635f;
+      font-size: 12px;
+      line-height: 1.25;
     }
 
-    .expertise-card li:last-child,
-    .achievement-list li:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-item {
+    .timeline {
       position: relative;
-      padding: 25px 0 30px 28px;
-      border-left: 2px solid var(--line);
+      display: grid;
+      gap: 24px;
     }
 
-    .timeline-item:first-of-type {
-      padding-top: 2px;
-    }
-
-    .timeline-item::before {
+    .timeline::before {
       position: absolute;
-      top: 31px;
-      left: -7px;
-      width: 12px;
-      height: 12px;
-      border: 3px solid var(--surface);
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent);
+      top: 18px;
+      bottom: 18px;
+      left: 17px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--line));
       content: "";
     }
 
-    .timeline-item:first-of-type::before {
-      top: 8px;
+    .job {
+      position: relative;
+      padding-left: 54px;
     }
 
-    .timeline-heading {
+    .job-dot {
+      position: absolute;
+      top: 7px;
+      left: 8px;
+      z-index: 1;
+      width: 20px;
+      height: 20px;
+      border: 5px solid #ffffff;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .job-card {
+      padding: 24px 25px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: #ffffff;
+    }
+
+    .job-header {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 28px;
@@ -285,74 +449,115 @@
       page-break-after: avoid;
     }
 
-    .timeline-heading h3 {
-      margin-bottom: 3px;
+    .job-title {
+      margin-bottom: 4px;
       color: var(--heading);
       font-size: 19px;
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     .company {
-      margin-bottom: 0;
-      color: var(--accent);
-      font-weight: 700;
+      margin: 0;
+      color: var(--accent-dark);
+      font-weight: 750;
     }
 
-    .timeline-meta {
+    .job-meta {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 5px;
       min-width: 190px;
       color: var(--muted);
       font-size: 12px;
       text-align: right;
     }
 
-    .achievement-list li {
-      margin-bottom: 8px;
-      padding-left: 3px;
-      color: #344054;
+    .job-meta span {
+      display: inline-flex;
+      justify-content: flex-end;
+      gap: 6px;
+      align-items: center;
     }
 
-    .section-split {
+    .job-meta svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .achievement-list {
       display: grid;
-      grid-template-columns: 1.4fr 0.8fr;
-      gap: 54px;
-      margin-top: 12px;
-      padding-top: 36px;
-      border-top: 1px solid var(--line);
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
-    .compact-item {
-      margin-bottom: 20px;
+    .achievement-list li {
+      position: relative;
+      padding-left: 19px;
+      color: #40514d;
+    }
+
+    .achievement-list li::before {
+      position: absolute;
+      top: 0.68em;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      content: "";
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 18px;
+    }
+
+    .bottom-card {
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface-soft);
       break-inside: avoid;
     }
 
-    .compact-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .compact-item h3 {
-      margin-bottom: 3px;
+    .bottom-card h3 {
+      margin-bottom: 12px;
       color: var(--heading);
       font-size: 15px;
     }
 
-    .compact-item p {
-      margin-bottom: 2px;
-      color: #344054;
+    .education-item + .education-item {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
     }
 
-    .compact-item span {
+    .education-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--heading);
+    }
+
+    .education-item p {
+      margin-bottom: 2px;
+      color: #42534f;
+    }
+
+    .education-item span {
       color: var(--muted);
       font-size: 12px;
     }
 
-    .language-list {
-      margin: 0;
-    }
-
-    .language-list > div {
+    .language-row {
       display: flex;
       justify-content: space-between;
       gap: 20px;
@@ -360,32 +565,43 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .language-list > div:first-child {
+    .language-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .language-row:first-child {
       padding-top: 0;
     }
 
-    .language-list dt {
+    .language-row strong {
       color: var(--heading);
-      font-weight: 700;
     }
 
-    .language-list dd {
-      margin: 0;
+    .language-row span {
       color: var(--muted);
       text-align: right;
     }
 
-    .resume-footer {
-      margin-top: 38px;
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: center;
+      margin-top: 36px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 11px;
-      text-align: center;
     }
 
-    .resume-footer p {
-      margin-bottom: 0;
+    .footer p {
+      margin: 0;
+    }
+
+    .footer-accent {
+      color: var(--accent-dark);
+      font-weight: 750;
     }
 
     .print-button {
@@ -397,9 +613,9 @@
       border: 0;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow: 0 12px 30px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 12px 30px rgba(15, 118, 110, 0.24);
       color: #ffffff;
-      font-weight: 700;
+      font-weight: 750;
       cursor: pointer;
     }
 
@@ -408,37 +624,66 @@
       background: var(--accent-dark);
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 860px) {
       body {
         padding: 0;
-        background: var(--surface);
+        background: #ffffff;
       }
 
       .resume {
         width: 100%;
-        padding: 34px 24px;
         border: 0;
         border-radius: 0;
         box-shadow: none;
       }
 
-      .resume-header,
-      .timeline-heading,
-      .section-split {
+      .hero,
+      .content {
+        padding-right: 24px;
+        padding-left: 24px;
+      }
+
+      .hero-grid,
+      .summary-box,
+      .job-header,
+      .bottom-grid {
         grid-template-columns: 1fr;
       }
 
-      .resume-header {
-        gap: 24px;
+      .hero-grid {
+        gap: 28px;
       }
 
-      .timeline-heading {
-        gap: 8px;
+      .job-header {
+        gap: 9px;
       }
 
-      .timeline-meta {
+      .job-meta {
         min-width: 0;
         text-align: left;
+      }
+
+      .job-meta span {
+        justify-content: flex-start;
+      }
+
+      .print-button {
+        display: none;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 38px;
+        padding-bottom: 32px;
+      }
+
+      .content {
+        padding-top: 30px;
+      }
+
+      h1 {
+        font-size: 42px;
       }
 
       .expertise-grid {
@@ -449,73 +694,60 @@
         grid-column: auto;
       }
 
-      .section-split {
-        gap: 30px;
+      .job {
+        padding-left: 42px;
       }
 
-      .print-button {
-        display: none;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .resume {
-        padding: 28px 18px;
+      .timeline::before {
+        left: 13px;
       }
 
-      h1 {
-        font-size: 38px;
+      .job-dot {
+        left: 4px;
       }
 
-      .role {
-        font-size: 21px;
+      .job-card {
+        padding: 20px;
       }
 
-      .specialisation span {
-        padding: 0 2px;
-      }
-
-      .timeline-item {
-        padding-left: 22px;
-      }
-
-      .language-list > div {
+      .footer {
         align-items: flex-start;
         flex-direction: column;
-        gap: 2px;
-      }
-
-      .language-list dd {
-        text-align: left;
+        gap: 6px;
       }
     }
 
     @page {
       size: A4;
-      margin: 13mm 14mm;
+      margin: 11mm 12mm;
     }
 
     @media print {
       :root {
+        --page: #ffffff;
         --surface: #ffffff;
-        --text: #111827;
-        --muted: #4b5563;
-        --line: #d1d5db;
+        --surface-soft: #f7faf9;
+        --text: #172321;
+        --heading: #0f1f1d;
+        --muted: #53625f;
+        --line: #cfdad8;
         --accent: #0f766e;
-        --heading: #111827;
+        --accent-dark: #0b5f59;
+        --accent-soft: #e7f4f2;
+        --accent-faint: #f5fbfa;
       }
 
       body {
         padding: 0;
         background: #ffffff;
-        font-size: 9.7pt;
-        line-height: 1.38;
+        font-size: 9.2pt;
+        line-height: 1.34;
       }
 
       .resume {
         width: auto;
         margin: 0;
-        padding: 0;
+        overflow: visible;
         border: 0;
         border-radius: 0;
         box-shadow: none;
@@ -525,9 +757,18 @@
         display: none !important;
       }
 
-      .resume-header {
-        gap: 22px;
-        padding-bottom: 16px;
+      .hero {
+        padding: 16mm 12mm 8mm;
+        background: #f3faf8;
+      }
+
+      .hero::after {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr) 66mm;
+        gap: 9mm;
       }
 
       h1 {
@@ -535,118 +776,185 @@
       }
 
       .role {
-        font-size: 14.5pt;
+        margin-bottom: 8px;
+        font-size: 15pt;
       }
 
-      .specialisation,
-      .contact-list {
-        font-size: 8.5pt;
+      .focus-line span {
+        min-height: 0;
+        padding: 3px 6px;
+        font-size: 7.7pt;
+      }
+
+      .contact-panel {
+        gap: 5px;
+      }
+
+      .contact-item {
+        grid-template-columns: 25px minmax(0, 1fr);
+        gap: 7px;
+        padding: 5px 7px;
+        font-size: 7.8pt;
+      }
+
+      .contact-icon {
+        width: 25px;
+        height: 25px;
+      }
+
+      .contact-icon svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      .content {
+        padding: 8mm 12mm 7mm;
       }
 
       .section {
-        padding-top: 15px;
+        padding-top: 7mm;
       }
 
-      .section + .section {
-        margin-top: 2px;
+      .section-heading {
+        margin-bottom: 3mm;
       }
 
-      .section > h2,
-      .section-split h2 {
-        margin-bottom: 12px;
-        padding-bottom: 7px;
-        font-size: 11.5pt;
+      .section-heading h2 {
+        font-size: 10.5pt;
       }
 
-      .section > h2::after,
-      .section-split h2::after {
-        width: 42px;
-        height: 2px;
+      .section-mark {
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
       }
 
-      .summary p {
-        margin-bottom: 7px;
+      .section-mark svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .summary-box {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 5mm;
+        padding: 4mm 5mm;
+        border-radius: 9px;
       }
 
       .expertise-grid {
-        gap: 8px;
+        gap: 3mm;
       }
 
       .expertise-card {
-        padding: 10px 12px;
-        border-radius: 8px;
+        padding: 4mm;
+        border-radius: 9px;
       }
 
-      .expertise-card h3 {
-        margin-bottom: 5px;
-        font-size: 9.5pt;
+      .card-title {
+        margin-bottom: 2mm;
       }
 
-      .expertise-card li {
-        margin-bottom: 2px;
-        font-size: 8.2pt;
+      .card-title h3,
+      .bottom-card h3 {
+        font-size: 9.2pt;
       }
 
-      .timeline-item {
-        padding: 12px 0 14px 20px;
-        break-inside: auto;
-        page-break-inside: auto;
+      .card-icon {
+        width: 27px;
+        height: 27px;
+        flex-basis: 27px;
       }
 
-      .timeline-item:first-of-type {
-        padding-top: 1px;
+      .card-icon svg {
+        width: 14px;
+        height: 14px;
       }
 
-      .timeline-item::before {
-        top: 18px;
-        left: -6px;
-        width: 10px;
-        height: 10px;
+      .skill-tags {
+        gap: 4px;
       }
 
-      .timeline-item:first-of-type::before {
-        top: 5px;
+      .skill-tags li {
+        padding: 3px 5px;
+        font-size: 7.5pt;
       }
 
-      .timeline-heading {
-        gap: 14px;
-        margin-bottom: 8px;
+      .timeline {
+        gap: 4mm;
       }
 
-      .timeline-heading h3 {
-        font-size: 11pt;
+      .job {
+        padding-left: 11mm;
       }
 
-      .timeline-meta {
-        min-width: 145px;
-        font-size: 8pt;
+      .timeline::before {
+        left: 3.5mm;
+      }
+
+      .job-dot {
+        top: 4px;
+        left: 1mm;
+        width: 14px;
+        height: 14px;
+        border-width: 4px;
+      }
+
+      .job-card {
+        padding: 4mm 5mm;
+        border-radius: 9px;
+      }
+
+      .job-header {
+        grid-template-columns: minmax(0, 1fr) 48mm;
+        gap: 5mm;
+        margin-bottom: 3mm;
+      }
+
+      .job-title {
+        font-size: 10.5pt;
+      }
+
+      .job-meta {
+        min-width: 0;
+        font-size: 7.6pt;
+      }
+
+      .achievement-list {
+        gap: 4px;
       }
 
       .achievement-list li {
-        margin-bottom: 4px;
         break-inside: avoid;
         page-break-inside: avoid;
       }
 
-      .section-split {
-        gap: 28px;
-        margin-top: 4px;
-        padding-top: 16px;
+      .bottom-grid {
+        grid-template-columns: 1.35fr 0.65fr;
+        gap: 3mm;
       }
 
-      .compact-item {
-        margin-bottom: 10px;
+      .bottom-card {
+        padding: 4mm 5mm;
+        border-radius: 9px;
       }
 
-      .resume-footer {
-        margin-top: 16px;
-        padding-top: 9px;
-        font-size: 7.5pt;
+      .education-item + .education-item {
+        margin-top: 3mm;
+        padding-top: 3mm;
+      }
+
+      .language-row {
+        padding: 2mm 0;
+      }
+
+      .footer {
+        margin-top: 6mm;
+        padding-top: 3mm;
+        font-size: 7pt;
       }
 
       a {
         color: inherit;
-        text-decoration: none;
       }
     }
   </style>
@@ -658,194 +966,256 @@
   </button>
 
   <main class="resume">
-    <header class="resume-header">
-      <div class="identity">
-        <p class="eyebrow">Curriculum Vitae</p>
-        <h1>Konstantin Senatov</h1>
-        <p class="role">Web Solutions Engineer</p>
-        <p class="specialisation">
-          WordPress Development
-          <span aria-hidden="true">·</span>
-          Technical SEO
-          <span aria-hidden="true">·</span>
-          Web Performance
-          <span aria-hidden="true">·</span>
-          Website Infrastructure
-        </p>
-      </div>
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Curriculum Vitae</p>
+          <h1>Konstantin Senatov</h1>
+          <p class="role">Web Solutions Engineer</p>
 
-      <address class="contact-list">
-        <a href="mailto:kostyasenatov@gmail.com">kostyasenatov@gmail.com</a>
-        <a href="https://www.linkedin.com/in/konstantin-senatov/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/konstantinsenatov" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <span>Remote · Open to international opportunities</span>
-      </address>
+          <p class="focus-line" aria-label="Primary areas of expertise">
+            <span>WordPress Development</span>
+            <span>Technical SEO</span>
+            <span>Web Performance</span>
+            <span>Website Infrastructure</span>
+          </p>
+        </div>
+
+        <address class="contact-panel">
+          <a class="contact-item" href="mailto:kostyasenatov@gmail.com">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            </span>
+            <span>kostyasenatov@gmail.com</span>
+          </a>
+
+          <a class="contact-item" href="https://www.linkedin.com/in/konstantin-senatov/" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6 9v9"/><path d="M6 6.5v.01"/><path d="M10 18v-5a4 4 0 0 1 8 0v5"/><path d="M10 9v9"/></svg>
+            </span>
+            <span>LinkedIn</span>
+          </a>
+
+          <a class="contact-item" href="https://github.com/konstantinsenatov" target="_blank" rel="noopener noreferrer">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M15 22v-3.8c0-1 .1-1.4-.5-2 2.7-.3 5.5-1.3 5.5-6A4.7 4.7 0 0 0 18.7 7 4.3 4.3 0 0 0 18.6 4S17.6 3.7 15 5a11.4 11.4 0 0 0-6 0C6.4 3.7 5.4 4 5.4 4A4.3 4.3 0 0 0 5.3 7 4.7 4.7 0 0 0 4 10.2c0 4.7 2.8 5.7 5.5 6-.5.5-.6 1.1-.5 2V22"/><path d="M9 19c-3 .9-3-1.5-4.2-2"/></svg>
+            </span>
+            <span>GitHub</span>
+          </a>
+
+          <div class="contact-item">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s6-4.5 6-11a6 6 0 1 0-12 0c0 6.5 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>
+            </span>
+            <span>Remote · Open to international opportunities</span>
+          </div>
+        </address>
+      </div>
     </header>
 
-    <section class="section summary" aria-labelledby="summary-title">
-      <h2 id="summary-title">Professional Summary</h2>
-
-      <p>
-        Web Solutions Engineer with 4+ years of commercial experience building, maintaining, and troubleshooting business websites. Strong background in WordPress development, technical SEO, web performance, hosting, migrations, and multi-CMS support.
-      </p>
-
-      <p>
-        Experienced in taking website projects from design implementation to production, resolving complex technical issues, and supporting teams with development, SEO, analytics, and infrastructure-related tasks.
-      </p>
-    </section>
-
-    <section class="section" aria-labelledby="expertise-title">
-      <h2 id="expertise-title">Core Expertise</h2>
-
-      <div class="expertise-grid">
-        <article class="expertise-card">
-          <h3>Web Development</h3>
-          <ul>
-            <li>HTML5, CSS3, SCSS, responsive layouts</li>
-            <li>JavaScript, jQuery, Pug, Gulp</li>
-            <li>Design-to-code implementation</li>
-            <li>CSS animations and GSAP</li>
-          </ul>
-        </article>
-
-        <article class="expertise-card">
-          <h3>WordPress &amp; CMS</h3>
-          <ul>
-            <li>Custom WordPress themes and templates</li>
-            <li>Advanced Custom Fields, custom post types, taxonomies</li>
-            <li>Elementor, WPBakery, WooCommerce</li>
-            <li>Shopify, Joomla, Squarespace, Webflow, Odoo Website, Bilda</li>
-          </ul>
-        </article>
-
-        <article class="expertise-card">
-          <h3>Technical SEO &amp; Performance</h3>
-          <ul>
-            <li>Crawlability, indexation, redirects, canonical tags</li>
-            <li>XML sitemaps, robots directives, structured data</li>
-            <li>Core Web Vitals and PageSpeed diagnostics</li>
-            <li>Screaming Frog, Search Console, Analytics, Business Profile</li>
-          </ul>
-        </article>
-
-        <article class="expertise-card">
-          <h3>Infrastructure &amp; Support</h3>
-          <ul>
-            <li>RunCloud, Cloudflare, cPanel, SSH</li>
-            <li>DNS, SSL, caching, CDN, and hosting configuration</li>
-            <li>Website migrations and post-migration troubleshooting</li>
-            <li>Website recovery and malware cleanup</li>
-          </ul>
-        </article>
-
-        <article class="expertise-card expertise-card-wide">
-          <h3>Workflow &amp; Tools</h3>
-          <ul>
-            <li>Local WordPress development and production deployment</li>
-            <li>GitHub-based project workflow</li>
-            <li>Technical debugging, documentation, and rapid prototyping</li>
-            <li>Cross-functional support across development, SEO, and infrastructure</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="experience-title">
-      <h2 id="experience-title">Professional Experience</h2>
-
-      <article class="timeline-item">
-        <div class="timeline-heading">
-          <div>
-            <h3>Web Developer &amp; Technical SEO Specialist</h3>
-            <p class="company">BeOnTop Digital Marketing</p>
-          </div>
-
-          <div class="timeline-meta">
-            <span>October 2022 — July 2026</span>
-            <span>Dubai, UAE</span>
-          </div>
+    <div class="content">
+      <section class="section" aria-labelledby="summary-title">
+        <div class="section-heading">
+          <span class="section-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/></svg>
+          </span>
+          <h2 id="summary-title">Professional Summary</h2>
         </div>
 
-        <ul class="achievement-list">
-          <li>
-            Managed and supported a diverse portfolio of client websites across WordPress and other CMS platforms, taking ownership from implementation through production support.
-          </li>
-          <li>
-            Built custom WordPress themes, page templates, post types, taxonomies, and ACF-based content structures for corporate and content-focused websites.
-          </li>
-          <li>
-            Performed technical SEO audits and implemented fixes for crawlability, indexation, redirects, canonical tags, XML sitemaps, robots directives, structured data, and migration-related issues.
-          </li>
-          <li>
-            Improved website performance through image optimisation, caching, asset adjustments, Core Web Vitals diagnostics, and PageSpeed analysis.
-          </li>
-          <li>
-            Managed hosting, DNS, SSL, CDN, caching, and server-related tasks using RunCloud, Cloudflare, cPanel, and SSH, including website migrations and post-migration troubleshooting.
-          </li>
-          <li>
-            Recovered broken or compromised WordPress websites, performed malware cleanup, and served as a technical escalation point for complex website issues.
-          </li>
-        </ul>
-      </article>
+        <div class="summary-box">
+          <p>
+            <strong>Web Solutions Engineer with 4+ years of commercial experience</strong>
+            building, maintaining, and troubleshooting business websites. Strong background in WordPress development, technical SEO, web performance, hosting, migrations, and multi-CMS support.
+          </p>
+          <p>
+            Experienced in taking website projects from design implementation to production, resolving complex technical issues, and supporting teams across development, SEO, analytics, and infrastructure.
+          </p>
+        </div>
+      </section>
 
-      <article class="timeline-item">
-        <div class="timeline-heading">
-          <div>
-            <h3>Freelance Web Developer</h3>
-            <p class="company">MOCKUP.DIGITAL</p>
-          </div>
-
-          <div class="timeline-meta">
-            <span>February 2022 — October 2024</span>
-            <span>Remote</span>
-          </div>
+      <section class="section" aria-labelledby="expertise-title">
+        <div class="section-heading">
+          <span class="section-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <h2 id="expertise-title">Core Expertise</h2>
         </div>
 
-        <ul class="achievement-list">
-          <li>Converted design layouts into responsive, production-ready HTML and CSS pages.</li>
-          <li>Built and updated website pages and reusable sections using HTML, CSS, SCSS, JavaScript, jQuery, and Pug.</li>
-          <li>Supported WordPress websites with frontend fixes, content structure improvements, and responsive adjustments.</li>
-          <li>Maintained frontend build workflows with Gulp and delivered updates for desktop and mobile layouts.</li>
-        </ul>
-      </article>
-    </section>
+        <div class="expertise-grid">
+          <article class="expertise-card">
+            <div class="card-title">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m14 5-4 14"/></svg>
+              </span>
+              <h3>Web Development</h3>
+            </div>
+            <ul class="skill-tags">
+              <li>HTML5</li><li>CSS3</li><li>SCSS</li><li>Responsive Layouts</li>
+              <li>JavaScript</li><li>jQuery</li><li>Pug</li><li>Gulp</li>
+              <li>Design-to-Code</li><li>CSS Animations</li><li>GSAP</li>
+            </ul>
+          </article>
 
-    <section class="section section-split" aria-label="Education and languages">
-      <div>
-        <h2>Education</h2>
+          <article class="expertise-card">
+            <div class="card-title">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 8.5 10.4 18"/><path d="M10.5 8.5 14 18"/><path d="m14.5 8.5 2.2 6.2"/></svg>
+              </span>
+              <h3>WordPress &amp; CMS</h3>
+            </div>
+            <ul class="skill-tags">
+              <li>Custom Themes</li><li>Templates</li><li>ACF</li><li>Custom Post Types</li>
+              <li>Taxonomies</li><li>Elementor</li><li>WPBakery</li><li>WooCommerce</li>
+              <li>Shopify</li><li>Joomla</li><li>Squarespace</li><li>Webflow</li><li>Odoo</li><li>Bilda</li>
+            </ul>
+          </article>
 
-        <article class="compact-item">
-          <h3>Bachelor’s Degree in Engineering</h3>
-          <p>Polzunov Altai State Technical University</p>
-          <span>2016 — 2020 · Barnaul, Russia</span>
-        </article>
+          <article class="expertise-card">
+            <div class="card-title">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/><path d="M8 11h6"/><path d="M11 8v6"/></svg>
+              </span>
+              <h3>Technical SEO &amp; Performance</h3>
+            </div>
+            <ul class="skill-tags">
+              <li>Crawlability</li><li>Indexation</li><li>Redirects</li><li>Canonical Tags</li>
+              <li>XML Sitemaps</li><li>Robots Directives</li><li>Structured Data</li>
+              <li>Core Web Vitals</li><li>PageSpeed</li><li>Screaming Frog</li>
+              <li>Search Console</li><li>Analytics</li><li>Business Profile</li>
+            </ul>
+          </article>
 
-        <article class="compact-item">
-          <h3>Front-End &amp; WordPress Development Training</h3>
-          <p>Online professional courses</p>
-          <span>2021 — 2022</span>
-        </article>
-      </div>
+          <article class="expertise-card">
+            <div class="card-title">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1"/><rect x="4" y="14" width="16" height="5" rx="1"/><path d="M8 8h.01"/><path d="M8 17h.01"/></svg>
+              </span>
+              <h3>Infrastructure &amp; Support</h3>
+            </div>
+            <ul class="skill-tags">
+              <li>RunCloud</li><li>Cloudflare</li><li>cPanel</li><li>SSH</li>
+              <li>DNS</li><li>SSL</li><li>Caching</li><li>CDN</li><li>Hosting</li>
+              <li>Website Migrations</li><li>Recovery</li><li>Malware Cleanup</li>
+            </ul>
+          </article>
 
-      <div>
-        <h2>Languages</h2>
+          <article class="expertise-card expertise-card-wide">
+            <div class="card-title">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m14.7 6.3 3 3"/><path d="m5 19 4.5-1 9.2-9.2a2.1 2.1 0 0 0-3-3L6.5 15z"/><path d="M12 5 9 2 2 9l3 3"/><path d="m16 13 6 6-3 3-6-6"/></svg>
+              </span>
+              <h3>Workflow &amp; Tools</h3>
+            </div>
+            <ul class="skill-tags">
+              <li>Local WordPress Development</li><li>Production Deployment</li>
+              <li>GitHub Workflow</li><li>Technical Debugging</li><li>Documentation</li>
+              <li>Rapid Prototyping</li><li>Cross-Functional Technical Support</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
-        <dl class="language-list">
-          <div>
-            <dt>Russian</dt>
-            <dd>Native</dd>
-          </div>
-          <div>
-            <dt>English</dt>
-            <dd>Working proficiency (B1–B2)</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
+      <section class="section" aria-labelledby="experience-title">
+        <div class="section-heading">
+          <span class="section-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V4h8v3"/><path d="M3 12h18"/><path d="M10 12v2h4v-2"/></svg>
+          </span>
+          <h2 id="experience-title">Professional Experience</h2>
+        </div>
 
-    <footer class="resume-footer">
-      <p>Web Solutions Engineer · WordPress · Technical SEO · Web Performance · Website Infrastructure</p>
-    </footer>
+        <div class="timeline">
+          <article class="job">
+            <span class="job-dot" aria-hidden="true"></span>
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Web Developer &amp; Technical SEO Specialist</h3>
+                  <p class="company">BeOnTop Digital Marketing</p>
+                </div>
+                <div class="job-meta">
+                  <span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 10h18"/></svg>October 2022 — July 2026</span>
+                  <span><svg viewBox="0 0 24 24"><path d="M12 21s6-4.5 6-11a6 6 0 1 0-12 0c0 6.5 6 11 6 11z"/><circle cx="12" cy="10" r="2"/></svg>Dubai, UAE</span>
+                </div>
+              </div>
+
+              <ul class="achievement-list">
+                <li>Managed and supported a diverse portfolio of client websites across WordPress and other CMS platforms, taking ownership from implementation through production support.</li>
+                <li>Built custom WordPress themes, page templates, post types, taxonomies, and ACF-based content structures for corporate and content-focused websites.</li>
+                <li>Performed technical SEO audits and implemented fixes for crawlability, indexation, redirects, canonical tags, XML sitemaps, robots directives, structured data, and migration-related issues.</li>
+                <li>Improved website performance through image optimisation, caching, asset adjustments, Core Web Vitals diagnostics, and PageSpeed analysis.</li>
+                <li>Managed hosting, DNS, SSL, CDN, caching, and server-related tasks using RunCloud, Cloudflare, cPanel, and SSH, including migrations and post-migration troubleshooting.</li>
+                <li>Recovered broken or compromised WordPress websites, performed malware cleanup, and served as a technical escalation point for complex website issues.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job">
+            <span class="job-dot" aria-hidden="true"></span>
+            <div class="job-card">
+              <div class="job-header">
+                <div>
+                  <h3 class="job-title">Freelance Web Developer</h3>
+                  <p class="company">MOCKUP.DIGITAL</p>
+                </div>
+                <div class="job-meta">
+                  <span><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 10h18"/></svg>February 2022 — October 2024</span>
+                  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18"/><path d="M12 3a15 15 0 0 0 0 18"/></svg>Remote</span>
+                </div>
+              </div>
+
+              <ul class="achievement-list">
+                <li>Converted design layouts into responsive, production-ready HTML and CSS pages.</li>
+                <li>Built and updated website pages and reusable sections using HTML, CSS, SCSS, JavaScript, jQuery, and Pug.</li>
+                <li>Supported WordPress websites with frontend fixes, content structure improvements, and responsive adjustments.</li>
+                <li>Maintained frontend build workflows with Gulp and delivered updates for desktop and mobile layouts.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-label="Education and languages">
+        <div class="section-heading">
+          <span class="section-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5z"/><path d="M7 12v5c3 2 7 2 10 0v-5"/></svg>
+          </span>
+          <h2>Education &amp; Languages</h2>
+        </div>
+
+        <div class="bottom-grid">
+          <article class="bottom-card">
+            <h3>Education</h3>
+            <div class="education-item">
+              <strong>Bachelor’s Degree in Engineering</strong>
+              <p>Polzunov Altai State Technical University</p>
+              <span>2016 — 2020 · Barnaul, Russia</span>
+            </div>
+            <div class="education-item">
+              <strong>Front-End &amp; WordPress Development Training</strong>
+              <p>Online professional courses</p>
+              <span>2021 — 2022</span>
+            </div>
+          </article>
+
+          <article class="bottom-card">
+            <h3>Languages</h3>
+            <div class="language-row">
+              <strong>Russian</strong>
+              <span>Native</span>
+            </div>
+            <div class="language-row">
+              <strong>English</strong>
+              <span>Working proficiency<br>(B1–B2)</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-accent">Web Solutions Engineer</p>
+        <p>WordPress · Technical SEO · Web Performance · Website Infrastructure</p>
+      </footer>
+    </div>
   </main>
 </body>
 </html>
